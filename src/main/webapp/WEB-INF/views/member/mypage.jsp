@@ -55,12 +55,21 @@
 								<br><br>
 								<li>
 									<label for="enroll-date">가입날짜</label>
-									<input type="text" id="enroll-date"value="${member.enrollDate}"> 
+									<input type="text" id="enroll-date"value="${member.enrollDate}" readonly> 
 								</li>
 							</ul>
 							<input type="submit" value="수정">
+							<a href="javascript:void(0)" onclick="checkDelete();">탈퇴하기</a>
 						</fieldset>
 					</form>
+					<script>			
+						function checkDelete(){
+							const memberId = '${sessionScope.memberId }';
+							if(confirm("탈퇴하시겠습니까?")){
+								location.href="/member/delete.do?memberId="+memberId;
+							}
+						}
+					</script>
                 </div>
             </div>
         </div>

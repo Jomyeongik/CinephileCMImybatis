@@ -24,4 +24,10 @@
 	<select id="selectOneByNo" resultMap="noticeResultMap">
 		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo }
 	</select>
+	<update id="updateNotice">
+		UPDATE NOTICE_TBL SET NOTICE_SUBJECT = #{noticeSubject }, NOTICE_CONTENT=#{noticeContent } WHERE NOTICE_NO=#{noticeNo }
+	</update>
+	<delete id="deleteNotice">
+		DELETE NOTICE_TBL WHERE NOTICE_NO= #{noticeNo }
+	</delete>
 </mapper>

@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 import notice.model.service.NoticeService;
 import notice.model.vo.Notice;
+import notice.model.vo.PageData;
 
 /**
  * Servlet implementation class noticeController
@@ -32,13 +35,24 @@ public class ListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		// SELECT * FROM NOTICE_TBL ORDER BY NOTICE_NO DESC
 		NoticeService service = new NoticeService();
-		List<Notice> nList = service.selectNoticeList();
-		request.setAttribute("nList", nList);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/list.jsp");
-		view.forward(request, response);	
+		String page = request.getParameter("currentPage") != null ? request.getParameter("currentPage") : "1";
+		int currentPage = Integer.parseInt(page);
+		PageData pd = service.selectNoticeList(currentPage);
+		List<Notice> nList = pd.getnList();
+		String pageNavi = pd.getPageNavi();
+		if(!nList.isEmpty()) {
+			request.setAttribute("nList", nList);
+			request.setAttribute("pageNavi", pageNavi);
+			RequestDispatcher view = request.getRequestDispatcher("/notice/list.do");
+			view.forward(request, response);
+		}else {
+			request.setAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
+			request.setAttribute("url", "/mainPage.jsp");
+			request.getRequestDispatcher("/WEB-INF/views/common/fail.jsp").forward(request, response);
 		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

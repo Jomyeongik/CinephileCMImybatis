@@ -8,14 +8,14 @@
         <ul>
             <li><a href="/movie/korea.do">국내영화투자</a></li>
             <li><a href="/movie/international.do">해외영화수입</a></li>
-            <li><a href="/notice/list.do">공지사항</a></li>
-            <li><a href="/member/mypage.do">마이페이지</a></li>
+            <li><a href="/notice/list.do?currentPage=${page }">공지사항</a></li>
+            <li><a href="/member/mypage.do?memberId=${memberId }">마이페이지</a></li>
         </ul>
     </div>
     <div id="login">
     <c:if test="${sessionScope.memberId ne null}">
     	<button onclick="window.location.href='/member/logout.do'">로그아웃</button>
-    	<button onclick="window.location.href='/member/mypage.do'">마이페이지</button>
+    	<button onclick="window.location.href='/member/mypage.do?memberId=${memberId }'">마이페이지</button>
     </c:if>
     <c:if test="${memberId eq null}">
     	<button onclick="window.location.href='/member/login.do'">로그인</button>            

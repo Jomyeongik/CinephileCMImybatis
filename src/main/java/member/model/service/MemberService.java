@@ -29,13 +29,39 @@ public class MemberService {
 	public Member selectCheckLogin(Member member) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
 		Member mOne = mDao.selectCheckLogin(session,member);
+		session.close();
 		return mOne;
 	}
 
 	public Member selectOneById(String memberId) {
 		SqlSession session = SqlSessionTemplate.getSqlSession();
 		Member mOne = mDao.selectOneById(session,memberId);
+		session.close();
 		return mOne;
+	}
+
+	public int updateMember(Member member) {
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		int result = mDao.updateMember(session, member);
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
+	}
+
+	public int deleteMember(String memberId) {
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		int result = mDao.deleteMember(session, memberId);
+		if(result > 0) {
+			session.commit();
+		}else {
+			session.rollback();
+		}
+		session.close();
+		return result;
 	}
 
 }
