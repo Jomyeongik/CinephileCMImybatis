@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="NoticeMapper">
+	<resultMap type="notice.model.vo.Notice" id="noticeResultMap">
+	<!-- type에는 NoticeVO의 경로를 적고 resultMap태그는 여러개가 있을 수 있으니 id값으로 구분 -->
+	<!-- VO클래스의 필드명과 DB의 컬럼명이 달라서 매핑해줘야함 -->
+	<!-- PK에 해당하는 컬럼은 id 태그로 그 외 나머지는 result 태그로 매핑해줌 -->
+		<!-- <id property="noticeNo" 			column="NOTICE_NO"/>
+		<result property="noticeSubject" 	column="NOTICE_SUBJECT"/>
+		<result property="noticeContent" 	column="NOTICE_CONTENT"/>		
+		<result property="noticeWriter"  	column="NOTICE_WRITER"/>
+		<result property="noticeDate" 	 	column="NOTICE_DATE"/>
+		<result property="updateDate" 	 	column="UPDATE_DATE"/>
+		<result property="viewCount" 	 	column="VIEW_COUNT"/> -->
+	</resultMap>
+	<insert id="insertNotice">
+		INSERT INTO NOTICE_TBL VALUES(SEQ_NOTICE_NO.NEXTVAL,?,?,'admin',DEFAULT,DEFAULT)
+		<!-- 수정필요 -->
+	</insert>
+		<select id="selectNoticeList" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL ORDER BY NOTICE_NO DESC
+	</select>
+		<select id="selectOneByNo" resultMap="noticeResultMap">
+		SELECT * FROM NOTICE_TBL WHERE NOTICE_NO = #{noticeNo }
+	</select>
+</mapper>
