@@ -24,40 +24,43 @@
             <div id="detailInfo">
                 <h1>회원정보</h1>
                 <div>
-                    <table>
-                    	<colgroup>
-							<col width="20%">
-							<col width="80%">
-						</colgroup>	
-                        <tr>
-                            <td>이름</td>
-                            <td>"${member.memberName }"</td>
-                        </tr>
-                        <tr>
-                            <td>아이디</td>
-                            <td>"${member.memberId }"</td>
-                        </tr>
-                        <tr>
-                            <td>비밀번호</td>
-                            <td>"${member.memberPw }"</td>
-                        </tr>
-                        <tr>
-                            <td>이메일</td>
-                            <td>"${member.memberEmail }"</td>
-                        </tr>
-                        <tr>
-                            <td>전화번호</td>
-                            <td>"${member.memberPhone }"</td>
-                        </tr>
-                        <tr>
-                            <td>주소</td>
-                            <td>"${member.memberAddress }"</td>
-                        </tr>
-                        <tr>
-                            <td>가입일</td>
-                            <td>"${member.memberDate }"</td>
-                        </tr>
-                    </table>
+                	<form action="/member/mypage.do" method="post">
+						<fieldset>
+							<legend>회원 상세 정보</legend>
+							<ul>
+								<li>
+									<label for="member-name">이름</label>
+									<input type="text" id="member-name" name="member-name" value="${member.memberName }" readonly }> 
+								</li>
+								<br><br>
+								<li>
+									<label for="member-id">아이디</label>
+									<input type="text" id="member-id" name="member-id"value="${member.memberId }" > 
+								</li>
+								<br><br>
+								<li>
+									<label for="member-pw">비밀번호</label>
+									<input type="password" id="member-pw" name="member-pw" value="${member.memberPw}">
+								</li>
+								<br><br>
+								<li>
+									<label for="member-email">이메일</label>
+									<input type="text" id="member-email" name="member-email"value="${member.memberEmail}"> 
+								</li>
+								<br><br>
+								<li>
+									<label for="member-phone">전화번호</label>
+									<input type="text" id="member-phone" name="member-phone"value="${member.memberPhone}"> 
+								</li>
+								<br><br>
+								<li>
+									<label for="enroll-date">가입날짜</label>
+									<input type="text" id="enroll-date"value="${member.enrollDate}"> 
+								</li>
+							</ul>
+							<input type="submit" value="수정">
+						</fieldset>
+					</form>
                 </div>
             </div>
         </div>

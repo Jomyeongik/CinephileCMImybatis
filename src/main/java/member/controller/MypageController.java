@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import member.model.service.MemberService;
 import member.model.vo.Member;
@@ -32,19 +33,23 @@ public class MypageController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService service = new MemberService();
-		String memberId = request.getParameter("memberId");
+		String memberId = request.getParameter("member-id");
 		Member member = service.selectOneById(memberId);
 		request.setAttribute("member",member);
-		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp");
-		view.forward(request, response);	
+		if(member != null) {
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp");
+		    view.forward(request, response);
+		}else {
+			response.sendRedirect("/WEB-INF/views/member/login.jsp");
 		}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
+		doGet(request, response);
+
 	}
 
 }
