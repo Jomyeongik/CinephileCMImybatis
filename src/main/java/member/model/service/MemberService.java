@@ -27,11 +27,15 @@ public class MemberService {
 	}
 
 	public Member selectCheckLogin(Member member) {
-		return null;
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		Member mOne = mDao.selectCheckLogin(session,member);
+		return mOne;
 	}
 
 	public Member selectOneById(String memberId) {
-		return null;
+		SqlSession session = SqlSessionTemplate.getSqlSession();
+		Member mOne = mDao.selectOneById(session,memberId);
+		return mOne;
 	}
 
 }
