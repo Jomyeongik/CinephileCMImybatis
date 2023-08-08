@@ -8,7 +8,7 @@
         <ul>
             <li><a href="/movie/korea.do">국내영화투자</a></li>
             <li><a href="/movie/international.do">해외영화수입</a></li>
-            <li><a href="/notice/list.do?currentPage=${page }">공지사항</a></li>
+            <li><a href="/notice/list.do">공지사항</a></li>
             <li><a href="/member/mypage.do?memberId=${memberId }">마이페이지</a></li>
         </ul>
     </div>

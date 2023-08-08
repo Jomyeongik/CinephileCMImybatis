@@ -5,7 +5,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/views/include/head.jsp"></jsp:include>
-<title>Insert title here</title>
+<title>공지사항 목록</title>
 <link rel="stylesheet" href="/resources/css/notice.css">
 </head>
 <body>

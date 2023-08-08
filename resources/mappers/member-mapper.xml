@@ -27,4 +27,5 @@
 	<delete id="deleteMember">
 		DELETE FROM MEMBER_TBL WHERE MEMBER_ID = #{memberId }
 	</delete>
+
 </mapper>

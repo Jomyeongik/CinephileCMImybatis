@@ -45,7 +45,7 @@ public class ListController extends HttpServlet {
 		if(!nList.isEmpty()) {
 			request.setAttribute("nList", nList);
 			request.setAttribute("pageNavi", pageNavi);
-			RequestDispatcher view = request.getRequestDispatcher("/notice/list.do");
+			RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/notice/list.jsp");
 			view.forward(request, response);
 		}else {
 			request.setAttribute("msg", "데이터 조회가 완료되지 않았습니다.");
